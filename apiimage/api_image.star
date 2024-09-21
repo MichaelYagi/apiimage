@@ -14,7 +14,7 @@ DEFAULT_API_URL = "https://dog.ceo/api/breeds/image/random"
 DEFAULT_BASE_URL = ""
 DEFAULT_APP_HEADERS = ""
 DEFAULT_RESPONSE_PATH = "message"
-TTL_SECONDS = 1
+TTL_SECONDS = 60
 
 def main(config):
     base_url = config.str("base_url", DEFAULT_BASE_URL)
