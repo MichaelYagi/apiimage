@@ -9,11 +9,12 @@ load("http.star", "http")
 load("render.star", "render")
 load("schema.star", "schema")
 
+DEBUG = False
 DEFAULT_API_URL = "https://dog.ceo/api/breeds/image/random"
 DEFAULT_BASE_URL = ""
 DEFAULT_APP_HEADERS = ""
 DEFAULT_RESPONSE_PATH = "message"
-TTL_SECONDS = 60
+TTL_SECONDS = 1
 
 def main(config):
     base_url = config.str("base_url", DEFAULT_BASE_URL)
@@ -21,16 +22,18 @@ def main(config):
     response_path = config.get("response_path", DEFAULT_RESPONSE_PATH)
     api_headers = config.get("api_headers", DEFAULT_APP_HEADERS)
 
-    # print("api_url")
-    # print(api_url)
-    # print("response_path")
-    # print(response_path)
+    if DEBUG:
+        print("api_url")
+        print(api_url)
+        print("response_path")
+        print(response_path)
 
     failure = False
 
     if api_url == "":
         failure = True
-        # print("api_url must not be blank.")
+        if DEBUG:
+            print("api_url must not be blank.")
 
     else:
         if api_headers != "" or api_headers != {}:
@@ -47,7 +50,8 @@ def main(config):
 
         if rep.status_code != 200:
             failure = True
-            # print("Request failed with status %d", rep.status_code)
+            if DEBUG:
+                print("Request failed with status %d", rep.status_code)
 
         else:
             json = rep.json()
@@ -65,13 +69,15 @@ def main(config):
                     if item.isdigit():
                         item = int(item)
 
-                    # print("item")
-                    # print(item)
-                    # print(type(json))
+                    if DEBUG:
+                        print("item")
+                        print(item)
+                        print(type(json))
+
                     if (type(json) == "dict" and json.get(item) == None) or (type(json) == "list" and json[item] == None):
                         failure = True
-
-                        # print("responsePathArray invalid. " + item + " does not exist")
+                        if DEBUG:
+                            print("responsePathArray invalid. " + item + " does not exist")
                         break
                     else:
                         json = json[item]
@@ -79,7 +85,8 @@ def main(config):
                 if type(json) == "string" and failure == False:
                     if json.startswith("http") == False and (base_url == "" or base_url.startswith("http") == False):
                         failure = True
-                        # print("Invalide URL. Requires a base_url")
+                        if DEBUG:
+                            print("Invalide URL. Requires a base_url")
 
                     else:
                         if base_url != "":
@@ -96,12 +103,14 @@ def main(config):
                             ),
                         )
                 else:
-                    # print("Invalid path for image")
-                    # print(json)
+                    if DEBUG:
+                        print("Invalid path for image")
+                        print(json)
                     failure = True
             else:
-                # print("Status failed")
-                # print(json)
+                if DEBUG:
+                    print("Status failed")
+                    print(json)
                 failure = True
 
     return render.Root(
