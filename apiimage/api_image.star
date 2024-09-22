@@ -30,7 +30,6 @@ def main(config):
     return get_image(base_url, api_url, response_path, api_headers)
 
 def get_image(base_url, api_url, response_path, api_headers):
-
     failure = False
 
     if api_url == "":
