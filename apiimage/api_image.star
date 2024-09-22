@@ -5,13 +5,13 @@ Description: Display an image from an endpoint.
 Author: Michael Yagi
 """
 
+load("cache.star", "cache")
+load("encoding/json.star", "json")
 load("http.star", "http")
 load("render.star", "render")
 load("schema.star", "schema")
-load("cache.star", "cache")
-load("encoding/json.star", "json")
 
-DEBUG = True
+DEBUG = False
 
 def main(config):
     base_url = config.str("base_url", "")
@@ -38,7 +38,7 @@ def main(config):
         headerMap = {}
         if api_headers != "" or api_headers != {}:
             api_headers = api_headers.split(",")
-        
+
             for app_header in api_headers:
                 headerKeyValueArray = app_header.split(":")
                 if len(headerKeyValueArray) > 1:
