@@ -98,7 +98,7 @@ def get_image(base_url, api_url, response_path, api_headers, debug_output):
                                 print("Invalide URL. Requires a base_url")
 
                         else:
-                            if base_url != "":
+                            if output.startswith("http") == False and base_url != "":
                                 url = base_url + output
                             else:
                                 url = output
