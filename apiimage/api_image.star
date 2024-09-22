@@ -203,7 +203,7 @@ def get_schema():
             schema.Text(
                 id = "response_path",
                 name = "JSON response path",
-                desc = "A comma separated path to the image in the response JSON. eg. `json_key1, 2, key_to_image_url`",
+                desc = "A comma separated path to the image URL in the response JSON. eg. `json_key1, 2, key_to_image_url`",
                 icon = "",
                 default = "",
                 # default = "message",
