@@ -203,7 +203,7 @@ def get_cached(url, debug_output, headerMap = {}, ttl_seconds = 20):
             isValidContentType = True
 
     if debug_output:
-        print("isValidContentType: " + str(isValidContentType))
+        print("isValidContentType for "+url+": " + str(isValidContentType))
 
     if res.status_code != 200 or isValidContentType == False:
         if debug_output:
