@@ -20,6 +20,7 @@ def main(config):
     fit_screen = config.bool("fit_screen", False)
 
     if debug_output:
+        print("------------------------------")
         print("CONFIG - api_url: " + api_url)
         print("CONFIG - response_path: " + response_path)
         print("CONFIG - request_headers: " + request_headers)
