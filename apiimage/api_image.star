@@ -22,6 +22,7 @@ def main(config):
     if debug_output:
         print("------------------------------")
         print("CONFIG - api_url: " + api_url)
+        print("CONFIG - base_url: " + base_url)
         print("CONFIG - response_path: " + response_path)
         print("CONFIG - request_headers: " + request_headers)
         print("CONFIG - debug_output: " + str(debug_output))
