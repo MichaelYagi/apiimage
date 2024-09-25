@@ -96,10 +96,16 @@ def get_image(base_url, api_url, response_path, request_headers, debug_output, f
                             if debug_output:
                                 print("responsePathArray invalid. " + str(item) + " does not exist")
                             break
-                        elif output != None and type(item) == "string" and output.get(item) != None:
+                        elif output != None and type(output) == "dict" and type(item) == "string" and output.get(item) != None:
                             output = output[item]
-                        elif output != None and type(item) == "int" and output[item] != None:
+                        elif output != None and type(output) == "list" and type(item) == "int" and output[item] != None:
                             output = output[item]
+                        else:
+                            failure = True
+                            message = "Response path invalid. " + str(item) + " does not exist"
+                            if debug_output:
+                                print("responsePathArray invalid. " + str(item) + " does not exist")
+                            break
 
                 if failure == False:
                     img = None
