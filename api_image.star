@@ -189,9 +189,9 @@ def get_image(base_url, api_url, response_path, request_headers, debug_output, f
         )
 
     return render.Root(
-        child = render.Box(
+        child = render.Box(render.Box(
             row,
-        ),
+        )),
     )
 
 def get_data(url, debug_output, headerMap = {}, ttl_seconds = 20):
