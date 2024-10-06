@@ -15,7 +15,6 @@ load("time.star", "time")
 def main(config):
     random.seed(time.now().unix // 10)
 
-    base_url = config.str("base_url", "")
     api_url = config.str("api_url", "")
     response_path = config.get("response_path", "")
     request_headers = config.get("request_headers", "")
@@ -27,16 +26,16 @@ def main(config):
     if debug_output:
         print("------------------------------")
         print("CONFIG - api_url: " + api_url)
-        print("CONFIG - base_url: " + base_url)
         print("CONFIG - response_path: " + response_path)
         print("CONFIG - request_headers: " + request_headers)
         print("CONFIG - debug_output: " + str(debug_output))
         print("CONFIG - fit_screen: " + str(fit_screen))
         print("CONFIG - ttl_seconds: " + str(ttl_seconds))
 
-    return get_image(base_url, api_url, response_path, request_headers, debug_output, fit_screen, ttl_seconds)
+    return get_image(api_url, response_path, request_headers, debug_output, fit_screen, ttl_seconds)
 
-def get_image(base_url, api_url, response_path, request_headers, debug_output, fit_screen, ttl_seconds):
+def get_image(api_url, response_path, request_headers, debug_output, fit_screen, ttl_seconds):
+    base_url = ""
     failure = False
     message = ""
 
@@ -92,7 +91,7 @@ def get_image(base_url, api_url, response_path, request_headers, debug_output, f
                                     item = item.strip()
 
                                     if item == "[rand]":
-                                        if type(output) == "list": 
+                                        if type(output) == "list":
                                             item = random.number(0, len(output) - 1)
                                             if debug_output:
                                                 print("Random index chosen " + str(item))
@@ -101,7 +100,7 @@ def get_image(base_url, api_url, response_path, request_headers, debug_output, f
                                             message = "Response path invalid. Use of [rand] only allowable in lists."
                                             if debug_output:
                                                 print("responsePathArray invalid. Use of [rand] only allowable in lists.")
-                                            break                                
+                                            break
 
                                     if type(item) != "int" and item.isdigit():
                                         item = int(item)
@@ -123,6 +122,10 @@ def get_image(base_url, api_url, response_path, request_headers, debug_output, f
                             if debug_output:
                                 print("Response content type JSON")
 
+                            api_url_array = api_url.split("/")
+                            if len(api_url_array) > 2:
+                                base_url = api_url_array[0] + "//" + api_url_array[2]
+
                             if type(output) == "string" and output.startswith("http") == False and (base_url == "" or base_url.startswith("http") == False):
                                 failure = True
                                 message = "Base URL required"
@@ -130,7 +133,10 @@ def get_image(base_url, api_url, response_path, request_headers, debug_output, f
                                     print("Invalid URL. Requires a base_url")
                             elif type(output) == "string":
                                 if output.startswith("http") == False and base_url != "":
-                                    url = base_url + output
+                                    if output.startswith("/"):
+                                        url = base_url + output
+                                    else:
+                                        url = base_url + "/" + output
                                 else:
                                     url = output
 
@@ -174,8 +180,8 @@ def get_image(base_url, api_url, response_path, request_headers, debug_output, f
                                     main_align = "space_evenly",
                                     cross_align = "center",
                                     children = [imgRender],
-                                )
-                            )
+                                ),
+                            ),
                         )
 
             else:
@@ -282,13 +288,6 @@ def get_schema():
                 icon = "",
                 default = "",
                 # default = "https://dog.ceo/api/breeds/image/random",
-            ),
-            schema.Text(
-                id = "base_url",
-                name = "Base URL",
-                desc = "The base URL if response JSON contains relative paths.",
-                icon = "",
-                default = "",
             ),
             schema.Text(
                 id = "response_path",
