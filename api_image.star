@@ -94,7 +94,6 @@ def get_image(api_url, response_path, request_headers, debug_output, fit_screen,
                                     if item == "[rand]":
                                         if type(output) == "list":
                                             item = get_random_index(output, ttl_seconds)
-                                            print(item)
                                             if debug_output:
                                                 print("Random index chosen " + str(item))
                                         else:
@@ -223,13 +222,9 @@ def get_random_index(a_list, ttl_seconds):
     random_index = random.number(0, len(a_list) - 1)
     cached_index = cache.get("random_index")
     if cached_index:
-        if int(cached_index) == random_index:
-            return get_random_index(a_list)
-        else:
-            cache.set("random_index", str(random_index), ttl_seconds = ttl_seconds)
-            return random_index
+        return cached_index
     else:
-        cache.set("random", str(random_index), ttl_seconds = ttl_seconds)
+        cache.set("random_index", str(random_index), ttl_seconds = ttl_seconds)
         return random_index
 
 def get_data(url, debug_output, headerMap = {}, ttl_seconds = 20):
