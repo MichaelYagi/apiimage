@@ -32,12 +32,12 @@ Response path: ```message```
 
 API URL: ```https://nuthatch.lastelm.software/v2/birds```
 
-Response path: ```entities,[rand],images,0```
+Response path: ```entities,[rand],images,[rand]```
 
 Request headers: ```api-key:<api_key>```
 
 Fit screen: ```On```
 
-* Note the [rand] keyword chooses from a random index according to the list length
+* Note the [rand] keyword chooses from a random index each time it's called according to the list length
 
 ![Ducks API](https://michaelyagi.github.io/images/api_image_3.gif)
