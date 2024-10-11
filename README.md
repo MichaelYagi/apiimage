@@ -38,4 +38,6 @@ Request headers: ```api-key:<api_key>```
 
 Fit screen: ```On```
 
+* Note the [rand] keyword chooses from a random index according to the list length
+
 ![Ducks API](https://michaelyagi.github.io/images/api_image_3.gif)
