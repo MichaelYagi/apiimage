@@ -23,8 +23,6 @@ API URL: ```https://dog.ceo/api/breeds/image/random```
 
 Response path: ```message```
 
-Fit screen: ```On```
-
 ![Dogs API](https://michaelyagi.github.io/images/api_image_2.gif)
 
 -----
