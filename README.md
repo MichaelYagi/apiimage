@@ -16,8 +16,6 @@ Example usages:
 
 API URL: ```https://cataas.com/cat/gif?height=32```
 
-Fit screen: ```On```
-
 ![Cats API](https://michaelyagi.github.io/images/api_image_1.gif)
 
 -----
