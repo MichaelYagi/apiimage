@@ -8,12 +8,6 @@ Example usages:
 
 -----
 
-API URL: ```https://cataas.com/cat/gif?height=32```
-
-![Cats API](https://michaelyagi.github.io/images/api_image_1.gif)
-
------
-
 API URL: ```https://media.tenor.com/0fCHAuYZRoYAAAAM/akira-shotaro-kaneda.gif```
 
 Fit screen: ```On```
