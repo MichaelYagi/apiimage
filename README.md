@@ -1,15 +1,10 @@
-
 This is one of my apps for the TidByt. You can pull images from an endpoint that serves images or JSON. Things like random image endpoints are an ideal use.
 
 This repo is intended as a testing and staging area before things get pushed to https://github.com/tidbyt/community/tree/main/apps/apiimage.
 
+https://github.com/public-apis/public-apis is a great resource for APIs you can use for this app.
+
 Example usages:
-
------
-
-API URL: ```https://cataas.com/cat/gif?height=32```
-
-![Cats API](https://michaelyagi.github.io/images/api_image_1.gif)
 
 -----
 
