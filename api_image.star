@@ -55,6 +55,19 @@ def get_image(api_url, base_url, response_path, request_headers, debug_output, f
                     cross_align = "center",
                     children = [
                         render.Box(
+                            width=44,
+                            height=12,
+                            color="#FFFFFF",
+                        ),
+                    ]
+                ),
+            ),
+            render.Box(
+                render.Row(
+                    main_align = "space_evenly",
+                    cross_align = "center",
+                    children = [
+                        render.Box(
                             width=42,
                             height=10,
                             color="#000000",
