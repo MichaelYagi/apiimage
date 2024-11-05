@@ -202,7 +202,7 @@ def get_image(api_url, base_url, response_path, request_headers, debug_output, f
                 # return get_image(base_url, api_url, response_path, request_headers, debug_output)
 
         else:
-            message = "Oops! Check URL and header values. URL must return JSON or image."
+            message = "Oops! Check URL and header values. URL "+api_url+" must return JSON or text."
             if debug_output:
                 print(message)
             failure = True
@@ -212,12 +212,13 @@ def get_image(api_url, base_url, response_path, request_headers, debug_output, f
 
     row = render.Row(children = [])
     if debug_output == True:
-        row = render.Row(
-            main_align = "space_evenly",
-            cross_align = "center",
-            children = [
-                render.WrappedText(content = message, font = "tom-thumb"),
-            ],
+        row = render.Marquee(
+            offset_start = 32,
+            offset_end = 32,
+            height = 32,
+            scroll_direction = "vertical",
+            width = 64,
+            child = render.WrappedText(content = message, font = "tom-thumb", color = "#FF0000"),
         )
 
     return render.Root(
