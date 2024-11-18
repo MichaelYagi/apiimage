@@ -275,7 +275,7 @@ def parse_response_path(output, responsePathStr, debug_output, is_xml = False):
 
         if is_xml:
             path_str = ""
-            last_item = ""
+            # last_item = ""
             for item in responsePathArray:
                 item = item.strip()
 
@@ -316,7 +316,7 @@ def parse_response_path(output, responsePathStr, debug_output, is_xml = False):
                 else:
                     path_str = path_str + "/" + item
 
-                last_item = item
+                # last_item = item
 
                 if debug_output:
                     print("Appended path: "+path_str)
