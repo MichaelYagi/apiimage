@@ -279,16 +279,15 @@ def parse_response_path(output, responsePathStr, debug_output, is_xml = False):
             for item in responsePathArray:
                 item = item.strip()
 
-                test_output = None
-
-                if len(path_str) > 0:
-                    test_output = output.query_all(path_str)
-                    if type(test_output) == "list" and len(test_output) == 0:
-                        failure = True
-                        message = "Response path has empty list for " + last_item + "."
-                        if debug_output:
-                            print("responsePathArray for " + last_item + " invalid. Response path has empty list.")
-                        break
+                # test_output = None
+                # if len(path_str) > 0:
+                #     test_output = output.query_all(path_str)
+                #     if type(test_output) == "list" and len(test_output) == 0:
+                #         failure = True
+                #         message = "Response path has empty list for " + last_item + "."
+                #         if debug_output:
+                #             print("responsePathArray for " + last_item + " invalid. Response path has empty list.")
+                #         break
 
                 index = -1
                 valid_rand = False
